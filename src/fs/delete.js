@@ -1,10 +1,12 @@
 import { unlink } from 'fs/promises'
 import { throwError } from './error.js'
+import path from 'path';
+import { getDirname } from './hint.js';
 
 const remove = async () => {
-    const fileName = 'fileToRemove.txt'
+    const fileNamePath = path.join(getDirname(import.meta.url) ,'files','fileToRemove.txt')
     try {
-        await unlink(`./files/${fileName}`)
+        await unlink(fileNamePath)
     } catch(error) {
         throwError()
     }

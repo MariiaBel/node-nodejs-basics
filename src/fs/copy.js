@@ -1,9 +1,13 @@
 import { copyFile, readdir, mkdir, access } from 'fs/promises'
 import { throwError } from './error.js'
+import { getDirname } from './hint.js';
+import path from 'path';
 
 const copy = async () => {
     try {
-        const PATH = './files', NEW_PATH = './files_copy'
+        const __dirname = getDirname(import.meta.url)
+        const PATH = path.join(__dirname,'files'), 
+              NEW_PATH = path.join(__dirname,'./files_copy')
         await access(PATH)
 
         await mkdir(NEW_PATH)

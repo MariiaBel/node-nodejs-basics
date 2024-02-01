@@ -4,7 +4,7 @@ const transform = async () => {
     const rs = process.stdin;
     const ws = process.stdout;
     const ts = new Transform({
-        transform(chunk, enc, cb) {
+        transform(chunk, _, cb) {
             const chunkStringified = chunk.toString().trim()
             const reversedChunk = chunkStringified.split('').reverse().join('')
             this.push(reversedChunk)
